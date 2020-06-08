@@ -13,7 +13,8 @@ div.post {
   overflow: hidden;
 }
 
-div.post img {
+div.post img,
+div.post video {
   max-width: 352px;
 }
 

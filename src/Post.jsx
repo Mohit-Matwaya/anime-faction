@@ -1,7 +1,36 @@
-import React, { useState, useEffect } from 'react';
-import { fetchPosts, fetchMorePosts } from './fetchPosts';
+import React, { useState, useEffect, useRef } from 'react';
+import { fetchPosts, fetchMorePosts, fetchVideo } from './fetchPosts';
 import './css/post.css'
 
+
+function MainContent(props) {
+  const { src, isVideo, shortcode } = props;
+  const vplayer = useRef(null);
+  const [videoURL, setVideoURL] = useState(null);
+  const handleClick = () => {
+    if (isVideo && videoURL == null)
+      fetchVideo(shortcode, (res) => {
+        setVideoURL(res.data.shortcode_media.video_url)
+        vplayer.current.focus()
+      })
+  }
+
+  return <div className='post-content' onClick={handleClick}>
+    {videoURL
+      ?
+      <video
+        onBlur={() => { vplayer.current.pause() }}
+        src={videoURL}
+        controls
+        autoPlay
+        loop={true}
+        ref={vplayer}
+      ></video>
+      :
+      <img src={src} alt="" />
+    }
+  </div>
+}
 
 function Caption(props) {
   const captions = props.captions.split('\n');
@@ -43,14 +72,18 @@ function Post() {
     });
   }, []);
 
-  return <>
+return <>
     <div className="container-post">
       {posts['edges'].map((_post, index) => {
         const post = _post.node;
         const captions = post.edge_media_to_caption.edges[0].node.text;
         return (
           <div className="post" key={index}>
-            <img src={post.display_url} alt="" />
+            <MainContent
+              src={post.thumbnail_src}
+              isVideo={post.is_video}
+              shortcode={post.shortcode}
+            />
             <Rating
               isVideo={post.is_video}
               likes={post.edge_media_preview_like.count}
