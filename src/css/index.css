@@ -1,0 +1,45 @@
+:root {
+  --border: #dadce8;
+}
+
+::-webkit-scrollbar{
+  display: none;
+}
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Roboto', sans-serif;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: 'Open Sans', sans-serif;
+}
+
+h3 {
+  margin: 48px;
+  text-align: center;
+}
+
+a {
+  text-decoration: none;
+  color: #000000;
+  font-size: 18px;
+}
+
+.seperator {
+  margin: 0 8px;
+  margin-bottom: -4px;
+  display: inline-block;
+  width: 1px;
+  height: 21px;
+  border: 1px solid #000000;
+}
