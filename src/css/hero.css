@@ -2,10 +2,10 @@
   height: 75vh;
   background-image: url('/assets/hero-bg.jpg');
   background-position: top left;
-  border-bottom: 1px solid rgba(0, 0, 0, .40);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.4);
 }
 
-.container-hero{
+.container-hero {
   margin-left: 10vw;
   padding-top: 64px;
   width: 40vw;
@@ -13,36 +13,68 @@
   color: #ece1dd;
 }
 
-.container-hero h1{
+.container-hero h1 {
   margin-bottom: 12px;
   text-align: left;
   font-size: 48px;
   line-height: 1.5;
 }
 
-.container-hero p{
+.container-hero p {
   margin-bottom: 32px;
   line-height: 1.7;
 }
 
-.container-hero p span{
+.container-hero p span {
   font-weight: 700;
   color: #3c2128;
 }
 
-
-.container-hero a{
+.container-hero a {
   padding: 12px 24px;
   display: inline-block;
   border: 1px solid currentColor;
   border-radius: 32px;
   color: inherit;
 }
-.container-hero a span{
-  display:  inline-block;
-  transition: transform .2s ease-in-out;
+.container-hero a span {
+  display: inline-block;
+  transition: transform 0.2s ease-in-out;
 }
 
-.container-hero a:hover span{
+.container-hero a:hover span {
   transform: rotate(-405deg);
+}
+
+@media only screen and (max-width: 768px) {
+  #hero {
+    height: 100vh;
+    background-position: center top;
+    background-attachment: fixed;
+  }
+  .container-hero {
+    width: auto;
+    padding: 20px 10px 0;
+  }
+
+  .container-hero p {
+    color: white;
+  }
+
+  .container-hero p span {
+    color: inherit;
+    font-weight: 400;
+  }
+
+  .container-hero a {
+    padding: 0;
+    padding-bottom: 4px;
+    border: none;
+    border-bottom: 2px solid currentColor;
+    border-radius: 0;
+    color: inherit;
+  }
+  .container-hero a span {
+    transform: rotate(-405deg);
+  }
 }

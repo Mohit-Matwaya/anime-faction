@@ -7,7 +7,6 @@
 
 div.post {
   margin-bottom: 8px;
-  width: min-content;
   border: 1px solid var(--border);
   border-radius: 4px;
   overflow: hidden;
@@ -40,11 +39,24 @@ button.show-more {
 }
 
 button.show-more:hover {
-  background-color: rgba(0, 0, 0, .05);
+  background-color: rgba(0, 0, 0, 0.05);
 }
 
-button.load-more{
+button.load-more {
   margin: 24px auto;
   padding: 4px 16px;
   display: block;
+}
+
+@media only screen and (max-width: 768px) {
+  .container-post {
+    grid-template-columns: repeat(auto-fit, 90vw);
+    place-items: center;
+    padding: 10px;
+  }
+  div.post img,
+  div.post video {
+    max-width: 100%;
+    max-height: 100%;
+  }
 }
