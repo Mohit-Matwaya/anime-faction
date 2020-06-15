@@ -1,5 +1,5 @@
 import React from 'react';
-import Post from './Post';
+import PostContainer from './components/Post/PostContainer';
 import Hero from './hero';
 
 function App() {
@@ -7,7 +7,7 @@ function App() {
     <>
       <Hero />
       <h3>Latest Posts</h3>
-      <Post />
+      <PostContainer />
     </>
   );
 }

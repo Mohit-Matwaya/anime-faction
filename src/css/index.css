@@ -2,7 +2,7 @@
   --border: #dadce8;
 }
 
-::-webkit-scrollbar{
+::-webkit-scrollbar {
   display: none;
 }
 
@@ -13,6 +13,7 @@
   padding: 0;
   box-sizing: border-box;
   font-family: 'Roboto', sans-serif;
+  font-weight: 500;
 }
 
 h1,
@@ -22,6 +23,7 @@ h4,
 h5,
 h6 {
   font-family: 'Open Sans', sans-serif;
+  font-weight: 700;
 }
 
 h3 {
@@ -34,6 +36,7 @@ a {
   color: #000000;
   font-size: 18px;
 }
+
 
 .seperator {
   margin: 0 8px;
