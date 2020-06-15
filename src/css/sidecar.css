@@ -1,0 +1,42 @@
+.sidecar {
+  display: flex;
+  overflow-y: scroll;
+  scroll-behavior: smooth;
+}
+
+.sidecar button {
+  position: absolute;
+  top: 50%;
+  width: 3em;
+  height: 5em;
+  background: rgba(0, 0, 0, 0.7);
+  border: none;
+  border-radius: 5px;
+  transform: translateY(-50%);
+  transition: opacity 0.1s ease-in-out;
+  opacity: 0;
+  z-index: 9;
+  cursor: pointer;
+}
+
+.sidecar button span {
+  color: #ffffff;
+  font-size: 20px;
+  text-align: center;
+}
+
+.sidecar:hover button {
+  opacity: 1;
+}
+.sidecar button:first-of-type {
+  left: -5px;
+}
+.sidecar button:last-of-type {
+  right: -5px;
+}
+
+@media only screen and (max-width: 768px) {
+  .sidecar button {
+    opacity: 1;
+  }
+}
