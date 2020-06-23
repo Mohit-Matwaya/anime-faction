@@ -27,6 +27,35 @@ div.post-rating {
   padding: 8px;
 }
 
+.post-sidecar-container {
+  position: relative;
+}
+
+.post-sidecar-container .control {
+  padding: .8em .4em ;
+  position: absolute;
+  top: 50%;
+}
+
+.post-sidecar-container .control:first-of-type {
+  left: -5px;
+}
+.post-sidecar-container .control:last-of-type {
+  right: -5px;
+}
+
+.post-sidecar {
+  display: flex;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  overflow: scroll hidden;
+}
+
+.post-sidecar img {
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+}
+
 button.show-more {
   padding: 4px;
   margin: 4px 0;

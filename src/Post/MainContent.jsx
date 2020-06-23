@@ -1,24 +1,13 @@
 import React, { useState, useRef } from "react";
 import { useEffect } from "react";
+import Emoji from "../Emoji";
 
-function fetchContent(shortcode) {
-  return new Promise((res, rej) => {
-    try {
-      const query_hash = "552bb33f4e58c7805d13d4f95da7d3a1";
-      fetch(
-        `https://www.instagram.com/graphql/query/?query_hash=${query_hash}&variables=%7B%22shortcode%22%3A%22${shortcode}%22%2C%22child_comment_count%22%3A3%2C%22fetch_comment_count%22%3A40%2C%22parent_comment_count%22%3A24%2C%22has_threaded_comments%22%3Atrue%7D`
-      )
-        .then((res) => res.json())
-        .then((data) => res(data));
-    } catch (er) {
-      rej(console.warn("Failed"));
-    }
-  });
-}
+import { fetchContent } from "../fetchPosts";
 
 function MainContent(props) {
   const { type, shortcode } = props;
   const SELF = useRef(null);
+  const Slider = useRef(null);
   const [URL, setURL] = useState(null);
 
   useEffect(() => {
@@ -42,20 +31,30 @@ function MainContent(props) {
 
     if (target) observer.observe(target);
 
-    return () => {
-      if (target) observer.unobserve(target);
-    };
+    return () => target && observer.unobserve(target);
   }, [SELF, shortcode, type]);
+
+  function handleSlide(dir) {
+    Slider.current.scrollLeft += dir * Slider.current.offsetWidth;
+  }
 
   return (
     <div className="post-content" ref={SELF}>
       {type === "GraphVideo" ? (
         <video src={URL} controls></video>
       ) : type === "GraphSidecar" && URL ? (
-        <div className="sidecar">
-          {URL.map((edge, index) => (
-            <img key={index} src={edge.node.display_url} alt="" />
-          ))}
+        <div className="post-sidecar-container">
+          <div className="post-sidecar" ref={Slider}>
+            {URL.map((edge, index) => (
+              <img key={index} src={edge.node.display_url} alt="" />
+            ))}
+          </div>
+          <button className="control" onClick={() => handleSlide(-1)}>
+            <Emoji img="◀" />
+          </button>
+          <button className="control" onClick={() => handleSlide(1)}>
+            <Emoji img="▶" />
+          </button>
         </div>
       ) : (
         <img src={URL} alt="img" />
