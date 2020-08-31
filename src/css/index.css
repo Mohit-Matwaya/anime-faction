@@ -35,9 +35,8 @@ a {
   font-size: 18px;
 }
 
-.seperator {
-  margin: 0 8px;
-  margin-bottom: -4px;
+.separator {
+  margin: 0 8px -4px;
   display: inline-block;
   width: 1px;
   height: 21px;

@@ -3,7 +3,6 @@ async function fetchPosts(callBack, options = {}) {
   const res = await jsonBody.json();
   callBack(res.graphql.user.edge_owner_to_timeline_media);
 }
-
 async function fetchMorePosts(callBack, end_cursor) {
   const query_hash = "7c8a1055f69ff97dc201e752cf6f0093";
   const jsonBody = await fetch(

@@ -1,11 +1,11 @@
-import React, { useState, useRef } from "react";
-import { useEffect } from "react";
-import Emoji from "../Emoji";
+import React, {useState, useRef} from "react";
+import {useEffect} from "react";
+import {Emoji} from "../components/utils";
 
-import { fetchContent } from "../fetchPosts";
+import {fetchContent} from "../fetchPosts";
 
 function MainContent(props) {
-  const { type, shortcode } = props;
+  const {type, shortcode} = props;
   const SELF = useRef(null);
   const Slider = useRef(null);
   const [URL, setURL] = useState(null);
@@ -26,7 +26,7 @@ function MainContent(props) {
           observer.unobserve(entry.target);
         }
       },
-      { threshold: 0, rootMargin: "1080px 0px" }
+      {threshold: 0, rootMargin: "1080px 0px"}
     );
 
     if (target) observer.observe(target);
@@ -46,18 +46,18 @@ function MainContent(props) {
         <div className="post-sidecar-container">
           <div className="post-sidecar" ref={Slider}>
             {URL.map((edge, index) => (
-              <img key={index} src={edge.node.display_url} alt="" />
+              <img key={index} src={edge.node.display_url} alt=""/>
             ))}
           </div>
           <button className="control" onClick={() => handleSlide(-1)}>
-            <Emoji img="◀" />
+            <Emoji img="◀"/>
           </button>
           <button className="control" onClick={() => handleSlide(1)}>
-            <Emoji img="▶" />
+            <Emoji img="▶"/>
           </button>
         </div>
       ) : (
-        <img src={URL} alt="img" />
+        <img src={URL} alt="img"/>
       )}
     </div>
   );
