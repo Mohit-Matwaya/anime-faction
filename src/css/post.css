@@ -17,9 +17,18 @@ div.post video {
   max-width: 352px;
 }
 
-div.post-rating {
+.post-rating {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 1rem;
+
   padding: 12px 8px 16px;
   border-bottom: 1px solid var(--border);
+}
+
+.post-rating span > * + * {
+  margin-left: 0.25rem;
 }
 
 .post-caption {
@@ -31,7 +40,7 @@ div.post-rating {
 }
 
 .post-sidecar-container .control {
-  padding: .8em .4em ;
+  padding: 0.8em 0.4em;
   position: absolute;
   top: 50%;
 }
@@ -39,6 +48,7 @@ div.post-rating {
 .post-sidecar-container .control:first-of-type {
   left: -5px;
 }
+
 .post-sidecar-container .control:last-of-type {
   right: -5px;
 }
@@ -72,7 +82,6 @@ button.show-more:hover {
 
 button.load-more {
   margin: 24px auto;
-  padding: 4px 16px;
   display: block;
 }
 
@@ -82,6 +91,7 @@ button.load-more {
     place-items: center;
     padding: 10px;
   }
+
   div.post img,
   div.post video {
     max-width: 100%;
