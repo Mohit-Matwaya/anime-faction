@@ -1,23 +1,18 @@
-import "../css/post.css";
+import React, { useEffect, useState } from "react";
+import "../../css/post.scss";
+import { fetchMorePosts, fetchPosts } from "../../fetchPosts";
+import { Emoji } from "../utils";
+import { Caption, ContentBody, Rating } from "./post.index";
+import { Spinner } from "../ui";
 
-import React, { useState, useEffect } from "react";
-
-import { Emoji } from "../components/utils";
-import { fetchPosts, fetchMorePosts } from "../fetchPosts";
-
-import { Rating, Caption, ContentBody } from "../components/Post/index.post";
 function Post() {
   const [posts, setPosts] = useState({ edges: [] });
   useEffect(() => {
-    try {
-      fetchPosts(setPosts);
-    } catch {
-      console.warn("retrying");
-      fetchPosts(setPosts);
-    } finally {
-      console.log("got latest posts");
-    }
+    fetchPosts({ error: "Failed to Load :( retry" }, setPosts);
   }, []);
+
+  if (posts.error) return posts.error;
+  if (!posts.page_info) return <Spinner />;
 
   return (
     <>
@@ -46,7 +41,9 @@ function Post() {
                 comments={edge_media_to_comment.count}
                 views={video_view_count}
               />
-              <Caption captions={edge_media_to_caption.edges[0].node.text} />
+              <Caption
+                captions={edge_media_to_caption.edges[0].node.text}
+              />
             </div>
           );
         })}
