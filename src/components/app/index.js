@@ -1,6 +1,7 @@
+import './app.css'
 import React from "react";
-import { Post } from "./components/Post";
-import Hero from "./hero";
+import { Post } from "components/post";
+import Hero from "components/hero";
 
 function App() {
   return (

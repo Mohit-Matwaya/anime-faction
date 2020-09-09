@@ -1,9 +1,13 @@
 import React, { useEffect, useState } from "react";
-import { fetchContent } from "../../fetchPosts";
-import GraphSidecar from "../GraphSidecar";
+import { fetchContent } from "fetchPosts";
+import GraphSidecar from "components/sidecar";
 
-const MainContent = ({ shortcode }) => {
-  const [[URL, type], dispatch] = useState(() => [null, "loading"]);
+interface Props {
+  shortcode: string;
+}
+
+const MainContent: React.FC<Props> = ({ shortcode }) => {
+  const [[URL, type], dispatch] = useState([undefined, "loading"]);
 
   useEffect(() => {
     const main = async () => {

@@ -12,6 +12,7 @@ div.post {
   border: 1px solid var(--border);
   border-radius: 4px;
   overflow: hidden;
+  background-color: #fefefe;
   img,
   video {
     margin: 0 auto;
@@ -21,6 +22,10 @@ div.post {
   }
 }
 
+.post-content {
+  background-color: #eeeeee;
+}
+
 .post-rating {
   display: flex;
   justify-content: flex-start;
@@ -28,6 +33,7 @@ div.post {
   gap: 1rem;
   padding: 12px 8px 16px;
   border-bottom: 1px solid var(--border);
+  color: var(--dim-text);
 }
 
 .post-rating span > * + * {
@@ -36,6 +42,7 @@ div.post {
 
 .post-caption {
   padding: 8px;
+  color: var(--pri-text);
 }
 
 button.show-more {
