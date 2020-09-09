@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { fetchContent } from "fetchPosts";
+import { fetchContent } from "functions/fetchPosts";
 import GraphSidecar from "components/sidecar";
 
 interface Props {
@@ -14,12 +14,17 @@ const MainContent: React.FC<Props> = ({ shortcode }) => {
       const { shortcode_media } = await fetchContent(shortcode);
       const { __typename: type } = shortcode_media;
       console.log(shortcode, type);
-      if (type === "GraphVideo") {
-        dispatch([shortcode_media.video_url, type]);
-      } else if (type === "GraphSidecar") {
-        dispatch([shortcode_media.edge_sidecar_to_children.edges, type]);
-      } else {
-        dispatch([shortcode_media.display_url, type]);
+
+      switch (type) {
+        case "GraphVideo":
+          dispatch([shortcode_media.video_url, type]);
+          break;
+        case "GraphSidecar":
+          dispatch([shortcode_media.edge_sidecar_to_children.edges, type]);
+          break;
+        default:
+          dispatch([shortcode_media.display_url, type]);
+          break;
       }
     };
     main();

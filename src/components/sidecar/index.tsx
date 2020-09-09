@@ -42,9 +42,24 @@ const GraphSidecar: React.FC<Props> = ({ URL }) => {
 
 const Container = styled.div`
   position: relative;
-  ::-webkit-scrollbar {
+`;
+
+const SideCar = styled.div`
+  display: flex;
+  overflow-x: scroll;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  &::-webkit-scrollbar {
     display: none;
   }
+`;
+
+const Slide = styled.div`
+  display: flex;
+  justify-items: center;
+  flex: 0 0 100%;
+  scrollbar-width: 0px;
+  scroll-snap-stop: always;
 `;
 
 const Control = styled.div`
@@ -60,21 +75,6 @@ const Control = styled.div`
   &:last-of-type {
     right: -5px;
   }
-`;
-
-const SideCar = styled.div`
-  display: flex;
-  scroll-snap-type: x mandatory;
-  scroll-behavior: smooth;
-  overflow-x: scroll;
-`;
-
-const Slide = styled.div`
-  flex: 0 0 100%;
-  display: flex;
-  justify-items: center;
-  scroll-snap-align: start;
-  scroll-snap-stop: always;
 `;
 
 export default GraphSidecar;

@@ -1,8 +1,7 @@
 import * as React from "react";
 import { useEffect, useState } from "react";
 import { Spinner } from "components/ui";
-import { Emoji } from "components/utils";
-import { fetchMorePosts, fetchPosts } from "fetchPosts";
+import { fetchMorePosts, fetchPosts } from "functions/fetchPosts";
 import { Caption, ContentBody, Rating } from "./";
 import "./post.scss";
 
@@ -17,7 +16,7 @@ export default () => {
     fetchPosts({ error: "Failed to Load :( retry" }, setPosts);
   }, []);
 
-  if (posts.error) return posts.error;
+  if (posts.error) return <p>{posts.error}</p>;
   if (!posts.page_info.has_next_page) return <Spinner />;
 
   return (
