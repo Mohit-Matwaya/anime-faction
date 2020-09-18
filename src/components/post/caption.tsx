@@ -1,35 +1,30 @@
-import React, { useReducer } from "react";
+import React, { useReducer } from 'react';
 
-interface Props {
-  captions: string;
-}
+const Caption = ({ captions }: { captions: string }) => {
+    const [showMore, handleShowMore] = useReducer(p => !p, false);
 
-const Caption: React.FC<Props> = ({ captions: stringedCaptions }) => {
-  const captions = stringedCaptions.split("\n");
-  const [showMore, handleShowMore] = useReducer((p) => !p, false);
-  return (
-    <div className="post-caption">
-      {!showMore ? (
-        <>
-          {captions.slice(0, 2).map((text) => (
-            <p key={text}>{text}</p>
-          ))}
-          <button className="show-more" onClick={handleShowMore}>
-            More
-          </button>
-        </>
-      ) : (
-        <>
-          {captions.map((text) => (
-            <p key={text}>{text}</p>
-          ))}
-          <button className="show-more" onClick={handleShowMore}>
-            Less
-          </button>
-        </>
-      )}
-    </div>
-  );
+    return !showMore ? (
+        <div className='post-caption'>
+            {captions
+                .split('\n')
+                .slice(0, 2)
+                .map(text => (
+                    <p key={text}>{text}</p>
+                ))}
+            <button className='show-more' onClick={handleShowMore}>
+                More
+            </button>
+        </div>
+    ) : (
+        <div className='post-caption'>
+            {captions.split('\n').map(text => (
+                <p key={text}>{text}</p>
+            ))}
+            <button className='show-more' onClick={handleShowMore}>
+                Less
+            </button>
+        </div>
+    );
 };
 
 export default Caption;
